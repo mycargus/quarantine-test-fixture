@@ -4,6 +4,11 @@ name: Quarantine CI
 # Produces real quarantine-results artifacts, creates real GitHub Issues for
 # flaky tests, and exercises the full quarantine flow.
 #
+# After quarantine run completes, a cleanup step closes quarantine issues
+# older than 1 day. This creates a perpetual cycle:
+#   detect flaky → quarantine → close issue → unquarantine → detect again
+# Every daily run exercises the full detect/quarantine/unquarantine path.
+#
 # The quarantine E2E tests in the main repo (test/e2e/github-artifacts.test.js)
 # depend on this workflow having run at least once so artifacts exist to validate.
 # See: https://github.com/mycargus/quarantine/blob/main/docs/milestones/m6.md
@@ -45,6 +50,22 @@ jobs:
       - name: Install test dependencies
         run: npm install
 
+      # Close quarantine issues older than 1 day. This unquarantines the
+      # tests so the next quarantine run detects them as flaky again,
+      # creating a perpetual detect → quarantine → unquarantine cycle.
+      - name: Close stale quarantine issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CUTOFF=$(date -u -d '1 day ago' '+%Y-%m-%dT%H:%M:%SZ' 2>/dev/null \
+            || date -u -v-1d '+%Y-%m-%dT%H:%M:%SZ')
+          gh issue list --label quarantine --state open --json number,createdAt --jq \
+            ".[] | select(.createdAt < \"$CUTOFF\") | .number" \
+          | while read -r num; do
+              echo "Closing stale quarantine issue #$num"
+              gh issue close "$num"
+            done
+
       # quarantine init creates quarantine.yml and the quarantine/state branch.
       # Remove any existing quarantine.yml so init always takes the fresh path
       # (avoids the interactive "Overwrite? [y/N]" prompt).
@@ -69,7 +90,7 @@ jobs:
       - name: Run tests with quarantine
         env:
           QUARANTINE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: quarantine run --retries 3 --junitxml junit.xml -- npm test
+        run: quarantine run --retries 1 --junitxml junit.xml -- npm test
 
       - name: Upload quarantine results
         if: always()
