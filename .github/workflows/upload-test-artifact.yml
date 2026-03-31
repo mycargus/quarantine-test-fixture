@@ -87,9 +87,12 @@ jobs:
       # the team needs to fix — the workflow should fail to surface that.
       # The artifact upload uses `if: always()` so results are available
       # for debugging regardless of the exit code.
+      # node_modules/.bin must be on PATH so quarantine can find `jest`
+      # when rerunning individual failing tests.
       - name: Run tests with quarantine
         env:
           QUARANTINE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PATH: ${{ github.workspace }}/node_modules/.bin:$PATH
         run: quarantine run --retries 3 --junitxml junit.xml -- npm test
 
       - name: Upload quarantine results
