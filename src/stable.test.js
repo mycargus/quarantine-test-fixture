@@ -11,4 +11,8 @@ describe("DatabaseService", () => {
   test("should execute query", () => {
     expect(1 + 1).toBe(2)
   })
+
+  test("should handle transactions", () => {
+    expect([1, 2, 3]).toHaveLength(3)
+  })
 })

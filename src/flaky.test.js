@@ -11,19 +11,36 @@
 
 describe("PaymentService", () => {
   test("should handle charge timeout", () => {
-    // Fails ~30% of the time
-    expect(Math.random()).toBeGreaterThan(0.3)
+    // Fails ~50% of the time
+    expect(Math.random()).toBeGreaterThan(0.5)
   })
 
   test("should process refund", () => {
-    // Fails ~20% of the time
-    expect(Math.random()).toBeGreaterThan(0.2)
+    // Fails ~50% of the time
+    expect(Math.random()).toBeGreaterThan(0.5)
+  })
+
+  test("should validate currency", () => {
+    // Fails ~40% of the time
+    expect(Math.random()).toBeGreaterThan(0.4)
   })
 })
 
 describe("AuthService", () => {
   test("should validate expired token", () => {
-    // Fails ~25% of the time
-    expect(Math.random()).toBeGreaterThan(0.25)
+    // Fails ~50% of the time
+    expect(Math.random()).toBeGreaterThan(0.5)
+  })
+
+  test("should refresh session", () => {
+    // Fails ~40% of the time
+    expect(Math.random()).toBeGreaterThan(0.4)
+  })
+})
+
+describe("CacheService", () => {
+  test("should handle eviction under load", () => {
+    // Fails ~50% of the time
+    expect(Math.random()).toBeGreaterThan(0.5)
   })
 })
