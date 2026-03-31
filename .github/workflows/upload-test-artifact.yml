@@ -90,7 +90,7 @@ jobs:
       - name: Run tests with quarantine
         env:
           QUARANTINE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: quarantine run --retries 1 --junitxml junit.xml -- npm test
+        run: quarantine run --retries 3 --junitxml junit.xml -- npm test
 
       - name: Upload quarantine results
         if: always()
