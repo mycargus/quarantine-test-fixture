@@ -1,0 +1,81 @@
+name: Quarantine CI
+
+# Dogfood: runs quarantine against a deliberately flaky Jest test suite.
+# Produces real quarantine-results artifacts, creates real GitHub Issues for
+# flaky tests, and exercises the full quarantine flow.
+#
+# The quarantine E2E tests in the main repo (test/e2e/github-artifacts.test.js)
+# depend on this workflow having run at least once so artifacts exist to validate.
+# See: https://github.com/mycargus/quarantine/blob/main/docs/milestones/m6.md
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Daily — keeps artifacts fresh (they expire after 90 days)
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write # quarantine state branch
+  issues: write # quarantine creates issues for flaky tests
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+
+      # No release exists yet — build from source.
+      # TODO: Replace with release binary download once quarantine publishes releases.
+      - name: Install quarantine CLI
+        run: |
+          git clone --depth 1 https://github.com/mycargus/quarantine.git /tmp/quarantine
+          cd /tmp/quarantine/cli
+          go build -o /usr/local/bin/quarantine ./cmd/quarantine
+
+      - name: Install test dependencies
+        run: npm install
+
+      # quarantine init creates quarantine.yml and the quarantine/state branch.
+      # Remove any existing quarantine.yml so init always takes the fresh path
+      # (avoids the interactive "Overwrite? [y/N]" prompt).
+      # On subsequent runs the state branch already exists — init detects this
+      # and skips branch creation automatically.
+      - name: Initialize quarantine
+        env:
+          QUARANTINE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          rm -f quarantine.yml
+          printf 'jest\n\n\n' | quarantine init
+
+      # quarantine exit codes:
+      #   0 = all tests passed or all failures were flaky (quarantined)
+      #   1 = genuine test failures remain
+      #   2 = quarantine infrastructure error (strict mode)
+      #
+      # Do NOT use continue-on-error here. Exit 1 means real failures that
+      # the team needs to fix — the workflow should fail to surface that.
+      # The artifact upload uses `if: always()` so results are available
+      # for debugging regardless of the exit code.
+      - name: Run tests with quarantine
+        env:
+          QUARANTINE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: quarantine run --retries 3 --junitxml junit.xml -- npm test
+
+      - name: Upload quarantine results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quarantine-results-${{ github.run_id }}
+          path: .quarantine/results.json
+          retention-days: 90
+          if-no-files-found: warn
