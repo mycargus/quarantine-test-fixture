@@ -92,8 +92,9 @@ jobs:
       - name: Run tests with quarantine
         env:
           QUARANTINE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PATH: ${{ github.workspace }}/node_modules/.bin:$PATH
-        run: quarantine run --retries 3 --junitxml junit.xml -- npm test
+        run: |
+          export PATH="${{ github.workspace }}/node_modules/.bin:$PATH"
+          quarantine run --retries 3 --junitxml junit.xml -- npm test
 
       - name: Upload quarantine results
         if: always()
