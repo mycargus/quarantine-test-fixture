@@ -1,0 +1,20 @@
+version: 1
+
+github:
+  owner: mycargus
+  repo: quarantine-test-fixture
+
+issue_tracker: github
+labels:
+  - quarantine
+notifications:
+  github_pr_comment: true
+storage:
+  branch: quarantine/state
+
+test_suites:
+  - name: jest-tests
+    command: ["npx", "jest", "--ci"]
+    junitxml: "junit.xml"
+    rerun_command: ["npx", "jest", "--testNamePattern", "{name}"]
+    retries: 3

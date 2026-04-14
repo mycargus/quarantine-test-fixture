@@ -2,16 +2,17 @@ name: Quarantine CI
 
 # Dogfood: runs quarantine against a deliberately flaky Jest test suite.
 # Produces real quarantine-results artifacts, creates real GitHub Issues for
-# flaky tests, and exercises the full quarantine flow.
+# flaky tests, and exercises the full quarantine flow including PR comments.
 #
 # After quarantine run completes, a cleanup step closes quarantine issues
 # older than 1 day. This creates a perpetual cycle:
 #   detect flaky → quarantine → close issue → unquarantine → detect again
 # Every daily run exercises the full detect/quarantine/unquarantine path.
 #
-# The quarantine E2E tests in the main repo (test/e2e/github-artifacts.test.js)
-# depend on this workflow having run at least once so artifacts exist to validate.
-# See: https://github.com/mycargus/quarantine/blob/main/docs/milestones/m6.md
+# The quarantine E2E tests in the main repo observe this workflow's real output:
+#   - test/e2e/quarantine-observe.test.js  — reads state, artifacts, issues, PR comments
+#   - test/e2e/github-artifacts.test.js    — verifies artifacts API shape
+#   - test/e2e/dashboard-sync.test.js      — exercises dashboard sync pipeline
 
 on:
   push:
@@ -66,17 +67,18 @@ jobs:
               gh issue close "$num"
             done
 
-      # quarantine init creates quarantine.yml and the quarantine/state branch.
-      # Remove any existing quarantine.yml so init always takes the fresh path
-      # (avoids the interactive "Overwrite? [y/N]" prompt).
-      # On subsequent runs the state branch already exists — init detects this
-      # and skips branch creation automatically.
-      - name: Initialize quarantine
+      # Ensure a long-lived issue exists to serve as a PR comment proxy.
+      # quarantine run posts PR comments when --pr is supplied. E2E tests
+      # observe the comment on this issue to verify the flow works.
+      - name: Ensure PR comment proxy issue exists
         env:
-          QUARANTINE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          rm -f quarantine.yml
-          printf 'jest\n\n\n' | quarantine init
+          PROXY=$(gh issue list --label e2e-pr-proxy --state open --json number --jq '.[0].number // empty')
+          if [ -z "$PROXY" ]; then
+            PROXY=$(gh issue create --title "E2E PR comment proxy — do not close" --label e2e-pr-proxy --body "Long-lived issue used as a PR stand-in so quarantine CI exercises the PR comment create/update flow. E2E tests observe the comment. Do not close." --json number --jq '.number')
+          fi
+          echo "PR_PROXY=$PROXY" >> "$GITHUB_ENV"
 
       # quarantine exit codes:
       #   0 = all tests passed or all failures were flaky (quarantined)
@@ -90,13 +92,13 @@ jobs:
       - name: Run tests with quarantine
         env:
           QUARANTINE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: quarantine run --retries 3 -- npm test
+        run: quarantine run jest-tests --pr "$PR_PROXY"
 
       - name: Upload quarantine results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: quarantine-results-${{ github.run_id }}
-          path: .quarantine/results.json
+          name: quarantine-results-jest-tests-${{ github.run_id }}
+          path: .quarantine/jest-tests/results.json
           retention-days: 90
           if-no-files-found: warn
