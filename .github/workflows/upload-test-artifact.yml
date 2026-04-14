@@ -76,7 +76,11 @@ jobs:
         run: |
           PROXY=$(gh issue list --label e2e-pr-proxy --state open --json number --jq '.[0].number // empty')
           if [ -z "$PROXY" ]; then
-            PROXY=$(gh issue create --title "E2E PR comment proxy — do not close" --label e2e-pr-proxy --body "Long-lived issue used as a PR stand-in so quarantine CI exercises the PR comment create/update flow. E2E tests observe the comment. Do not close." --json number --jq '.number')
+            URL=$(gh issue create \
+              --title "E2E PR comment proxy — do not close" \
+              --label e2e-pr-proxy \
+              --body "Long-lived issue used as a PR stand-in so quarantine CI exercises the PR comment create/update flow. E2E tests observe the comment. Do not close.")
+            PROXY=$(echo "$URL" | grep -oE '[0-9]+$')
           fi
           echo "PR_PROXY=$PROXY" >> "$GITHUB_ENV"
 
