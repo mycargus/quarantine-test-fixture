@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "updated_at": "2026-04-14T23:16:49Z",
+  "tests": {
+    "PaymentService::CacheService should handle eviction under load::CacheService should handle eviction under load": {
+      "test_id": "PaymentService::CacheService should handle eviction under load::CacheService should handle eviction under load",
+      "file_path": "PaymentService",
+      "classname": "CacheService should handle eviction under load",
+      "name": "CacheService should handle eviction under load",
+      "suite": "",
+      "first_flaky_at": "2026-04-14T23:16:49Z",
+      "last_failure_at": "2026-04-14T23:16:49Z",
+      "flaky_count": 1,
+      "quarantined_at": "2026-04-14T23:16:49Z",
+      "quarantined_by": "auto"
+    },
+    "PaymentService::PaymentService should handle charge timeout::PaymentService should handle charge timeout": {
+      "test_id": "PaymentService::PaymentService should handle charge timeout::PaymentService should handle charge timeout",
+      "file_path": "PaymentService",
+      "classname": "PaymentService should handle charge timeout",
+      "name": "PaymentService should handle charge timeout",
+      "suite": "",
+      "first_flaky_at": "2026-04-14T23:16:49Z",
+      "last_failure_at": "2026-04-14T23:16:49Z",
+      "flaky_count": 1,
+      "quarantined_at": "2026-04-14T23:16:49Z",
+      "quarantined_by": "auto"
+    }
+  }
+}
