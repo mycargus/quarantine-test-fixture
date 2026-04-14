@@ -74,6 +74,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Ensure the label exists (idempotent — ignores 422 Unprocessable Entity if it exists)
+          gh api -X POST /repos/${{ github.repository }}/labels \
+            -f name="e2e-pr-proxy" \
+            -f color="0075ca" \
+            -f description="Long-lived PR comment proxy issue for E2E tests" \
+            2>/dev/null || true
           PROXY=$(gh issue list --label e2e-pr-proxy --state open --json number --jq '.[0].number // empty')
           if [ -z "$PROXY" ]; then
             URL=$(gh issue create \
