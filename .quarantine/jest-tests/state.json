@@ -1,7 +1,19 @@
 {
   "version": 1,
-  "updated_at": "2026-04-14T23:16:49Z",
+  "updated_at": "2026-04-15T06:41:33Z",
   "tests": {
+    "PaymentService::AuthService should refresh session::AuthService should refresh session": {
+      "test_id": "PaymentService::AuthService should refresh session::AuthService should refresh session",
+      "file_path": "PaymentService",
+      "classname": "AuthService should refresh session",
+      "name": "AuthService should refresh session",
+      "suite": "",
+      "first_flaky_at": "2026-04-15T06:41:33Z",
+      "last_failure_at": "2026-04-15T06:41:33Z",
+      "flaky_count": 1,
+      "quarantined_at": "2026-04-15T06:41:33Z",
+      "quarantined_by": "auto"
+    },
     "PaymentService::CacheService should handle eviction under load::CacheService should handle eviction under load": {
       "test_id": "PaymentService::CacheService should handle eviction under load::CacheService should handle eviction under load",
       "file_path": "PaymentService",
@@ -9,8 +21,8 @@
       "name": "CacheService should handle eviction under load",
       "suite": "",
       "first_flaky_at": "2026-04-14T23:16:49Z",
-      "last_failure_at": "2026-04-14T23:16:49Z",
-      "flaky_count": 1,
+      "last_failure_at": "2026-04-15T06:41:33Z",
+      "flaky_count": 2,
       "quarantined_at": "2026-04-14T23:16:49Z",
       "quarantined_by": "auto"
     },
