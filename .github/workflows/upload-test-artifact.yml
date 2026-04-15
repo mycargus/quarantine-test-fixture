@@ -21,6 +21,10 @@ on:
     # Daily — keeps artifacts fresh (they expire after 90 days)
     - cron: "0 6 * * *"
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Quarantine CLI version to install (e.g. v0.1.0-rc1). Defaults to latest stable."
+        required: false
 
 permissions:
   contents: write # quarantine state branch
@@ -37,7 +41,7 @@ jobs:
           node-version: "20"
 
       - name: Install quarantine CLI
-        run: curl -sSL https://raw.githubusercontent.com/mycargus/quarantine/main/scripts/install.sh | bash
+        run: curl -sSL https://raw.githubusercontent.com/mycargus/quarantine/main/scripts/install.sh | VERSION=${{ inputs.version || 'latest' }} bash
 
       - name: Install test dependencies
         run: npm install
