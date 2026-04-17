@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-04-16T06:42:17Z",
+  "updated_at": "2026-04-17T06:42:14Z",
   "tests": {
     "PaymentService::AuthService should refresh session::AuthService should refresh session": {
       "test_id": "PaymentService::AuthService should refresh session::AuthService should refresh session",
@@ -9,8 +9,8 @@
       "name": "AuthService should refresh session",
       "suite": "",
       "first_flaky_at": "2026-04-15T06:41:33Z",
-      "last_failure_at": "2026-04-15T22:16:24Z",
-      "flaky_count": 3,
+      "last_failure_at": "2026-04-17T06:42:14Z",
+      "flaky_count": 4,
       "quarantined_at": "2026-04-15T06:41:33Z",
       "quarantined_by": "auto"
     },
@@ -21,8 +21,8 @@
       "name": "AuthService should validate expired token",
       "suite": "",
       "first_flaky_at": "2026-04-15T22:16:24Z",
-      "last_failure_at": "2026-04-15T22:16:24Z",
-      "flaky_count": 1,
+      "last_failure_at": "2026-04-17T06:42:14Z",
+      "flaky_count": 2,
       "quarantined_at": "2026-04-15T22:16:24Z",
       "quarantined_by": "auto"
     },
@@ -45,8 +45,8 @@
       "name": "PaymentService should handle charge timeout",
       "suite": "",
       "first_flaky_at": "2026-04-14T23:16:49Z",
-      "last_failure_at": "2026-04-16T06:42:17Z",
-      "flaky_count": 3,
+      "last_failure_at": "2026-04-17T06:42:14Z",
+      "flaky_count": 4,
       "quarantined_at": "2026-04-14T23:16:49Z",
       "quarantined_by": "auto"
     },
@@ -60,6 +60,18 @@
       "last_failure_at": "2026-04-15T22:16:24Z",
       "flaky_count": 2,
       "quarantined_at": "2026-04-15T21:46:52Z",
+      "quarantined_by": "auto"
+    },
+    "PaymentService::PaymentService should validate currency::PaymentService should validate currency": {
+      "test_id": "PaymentService::PaymentService should validate currency::PaymentService should validate currency",
+      "file_path": "PaymentService",
+      "classname": "PaymentService should validate currency",
+      "name": "PaymentService should validate currency",
+      "suite": "",
+      "first_flaky_at": "2026-04-17T06:42:14Z",
+      "last_failure_at": "2026-04-17T06:42:14Z",
+      "flaky_count": 1,
+      "quarantined_at": "2026-04-17T06:42:14Z",
       "quarantined_by": "auto"
     }
   }
