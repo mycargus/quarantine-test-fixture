@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-04-21T06:42:24Z",
+  "updated_at": "2026-04-22T06:41:59Z",
   "tests": {
     "PaymentService::AuthService should refresh session::AuthService should refresh session": {
       "test_id": "PaymentService::AuthService should refresh session::AuthService should refresh session",
@@ -9,8 +9,8 @@
       "name": "AuthService should refresh session",
       "suite": "",
       "first_flaky_at": "2026-04-15T06:41:33Z",
-      "last_failure_at": "2026-04-18T06:29:55Z",
-      "flaky_count": 5,
+      "last_failure_at": "2026-04-22T06:41:59Z",
+      "flaky_count": 6,
       "quarantined_at": "2026-04-15T06:41:33Z",
       "quarantined_by": "auto"
     },
@@ -57,8 +57,8 @@
       "name": "PaymentService should process refund",
       "suite": "",
       "first_flaky_at": "2026-04-15T21:46:52Z",
-      "last_failure_at": "2026-04-21T06:42:24Z",
-      "flaky_count": 5,
+      "last_failure_at": "2026-04-22T06:41:59Z",
+      "flaky_count": 6,
       "quarantined_at": "2026-04-15T21:46:52Z",
       "quarantined_by": "auto"
     },
