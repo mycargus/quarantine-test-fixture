@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-05-05T06:50:31Z",
+  "updated_at": "2026-05-06T06:59:08Z",
   "tests": {
     "PaymentService::AuthService should refresh session::AuthService should refresh session": {
       "test_id": "PaymentService::AuthService should refresh session::AuthService should refresh session",
@@ -9,8 +9,8 @@
       "name": "AuthService should refresh session",
       "suite": "",
       "first_flaky_at": "2026-04-15T06:41:33Z",
-      "last_failure_at": "2026-05-03T06:55:17Z",
-      "flaky_count": 12,
+      "last_failure_at": "2026-05-06T06:59:08Z",
+      "flaky_count": 13,
       "quarantined_at": "2026-04-15T06:41:33Z",
       "quarantined_by": "auto"
     },
@@ -21,8 +21,8 @@
       "name": "AuthService should validate expired token",
       "suite": "",
       "first_flaky_at": "2026-04-15T22:16:24Z",
-      "last_failure_at": "2026-05-05T06:50:31Z",
-      "flaky_count": 8,
+      "last_failure_at": "2026-05-06T06:59:08Z",
+      "flaky_count": 9,
       "quarantined_at": "2026-04-15T22:16:24Z",
       "quarantined_by": "auto"
     },
