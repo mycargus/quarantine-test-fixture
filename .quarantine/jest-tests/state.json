@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-05-27T07:31:37Z",
+  "updated_at": "2026-05-28T07:25:22Z",
   "tests": {
     "PaymentService::AuthService should refresh session::AuthService should refresh session": {
       "test_id": "PaymentService::AuthService should refresh session::AuthService should refresh session",
@@ -33,8 +33,8 @@
       "name": "CacheService should handle eviction under load",
       "suite": "",
       "first_flaky_at": "2026-04-14T23:16:49Z",
-      "last_failure_at": "2026-05-26T07:17:36Z",
-      "flaky_count": 19,
+      "last_failure_at": "2026-05-28T07:25:22Z",
+      "flaky_count": 20,
       "quarantined_at": "2026-04-14T23:16:49Z",
       "quarantined_by": "auto"
     },
@@ -45,8 +45,8 @@
       "name": "PaymentService should handle charge timeout",
       "suite": "",
       "first_flaky_at": "2026-04-14T23:16:49Z",
-      "last_failure_at": "2026-05-27T07:31:37Z",
-      "flaky_count": 24,
+      "last_failure_at": "2026-05-28T07:25:22Z",
+      "flaky_count": 25,
       "quarantined_at": "2026-04-14T23:16:49Z",
       "quarantined_by": "auto"
     },
