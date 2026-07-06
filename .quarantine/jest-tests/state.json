@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-07-05T08:50:32Z",
+  "updated_at": "2026-07-06T10:17:27Z",
   "tests": {
     "PaymentService::AuthService should refresh session::AuthService should refresh session": {
       "test_id": "PaymentService::AuthService should refresh session::AuthService should refresh session",
@@ -9,8 +9,8 @@
       "name": "AuthService should refresh session",
       "suite": "",
       "first_flaky_at": "2026-04-15T06:41:33Z",
-      "last_failure_at": "2026-07-04T08:34:48Z",
-      "flaky_count": 37,
+      "last_failure_at": "2026-07-06T10:17:27Z",
+      "flaky_count": 38,
       "quarantined_at": "2026-04-15T06:41:33Z",
       "quarantined_by": "auto"
     },
@@ -57,8 +57,8 @@
       "name": "PaymentService should process refund",
       "suite": "",
       "first_flaky_at": "2026-04-15T21:46:52Z",
-      "last_failure_at": "2026-06-29T07:48:44Z",
-      "flaky_count": 39,
+      "last_failure_at": "2026-07-06T10:17:27Z",
+      "flaky_count": 40,
       "quarantined_at": "2026-04-15T21:46:52Z",
       "quarantined_by": "auto"
     },
@@ -69,8 +69,8 @@
       "name": "PaymentService should validate currency",
       "suite": "",
       "first_flaky_at": "2026-04-17T06:42:14Z",
-      "last_failure_at": "2026-07-04T08:34:48Z",
-      "flaky_count": 31,
+      "last_failure_at": "2026-07-06T10:17:27Z",
+      "flaky_count": 32,
       "quarantined_at": "2026-04-17T06:42:14Z",
       "quarantined_by": "auto"
     }
