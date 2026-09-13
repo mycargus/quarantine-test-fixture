@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-12T10:07:43Z",
+  "updated_at": "2026-09-13T11:06:48Z",
   "tests": {
     "PaymentService::AuthService should refresh session::AuthService should refresh session": {
       "test_id": "PaymentService::AuthService should refresh session::AuthService should refresh session",
@@ -9,8 +9,8 @@
       "name": "AuthService should refresh session",
       "suite": "",
       "first_flaky_at": "2026-04-15T06:41:33Z",
-      "last_failure_at": "2026-09-08T10:36:28Z",
-      "flaky_count": 64,
+      "last_failure_at": "2026-09-13T11:06:48Z",
+      "flaky_count": 65,
       "quarantined_at": "2026-04-15T06:41:33Z",
       "quarantined_by": "auto"
     },
