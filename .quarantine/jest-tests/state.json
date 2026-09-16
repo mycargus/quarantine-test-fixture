@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-15T11:06:34Z",
+  "updated_at": "2026-09-16T10:52:18Z",
   "tests": {
     "PaymentService::AuthService should refresh session::AuthService should refresh session": {
       "test_id": "PaymentService::AuthService should refresh session::AuthService should refresh session",
@@ -21,8 +21,8 @@
       "name": "AuthService should validate expired token",
       "suite": "",
       "first_flaky_at": "2026-04-15T22:16:24Z",
-      "last_failure_at": "2026-09-15T11:06:34Z",
-      "flaky_count": 69,
+      "last_failure_at": "2026-09-16T10:52:18Z",
+      "flaky_count": 70,
       "quarantined_at": "2026-04-15T22:16:24Z",
       "quarantined_by": "auto"
     },
@@ -45,8 +45,8 @@
       "name": "PaymentService should handle charge timeout",
       "suite": "",
       "first_flaky_at": "2026-04-14T23:16:49Z",
-      "last_failure_at": "2026-09-14T11:50:39Z",
-      "flaky_count": 81,
+      "last_failure_at": "2026-09-16T10:52:18Z",
+      "flaky_count": 82,
       "quarantined_at": "2026-04-14T23:16:49Z",
       "quarantined_by": "auto"
     },
@@ -57,8 +57,8 @@
       "name": "PaymentService should process refund",
       "suite": "",
       "first_flaky_at": "2026-04-15T21:46:52Z",
-      "last_failure_at": "2026-09-15T11:06:34Z",
-      "flaky_count": 69,
+      "last_failure_at": "2026-09-16T10:52:18Z",
+      "flaky_count": 70,
       "quarantined_at": "2026-04-15T21:46:52Z",
       "quarantined_by": "auto"
     },
