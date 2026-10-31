@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-30T12:09:31Z",
+  "updated_at": "2026-10-31T11:42:18Z",
   "tests": {
     "PaymentService::AuthService should refresh session::AuthService should refresh session": {
       "test_id": "PaymentService::AuthService should refresh session::AuthService should refresh session",
@@ -9,8 +9,8 @@
       "name": "AuthService should refresh session",
       "suite": "",
       "first_flaky_at": "2026-04-15T06:41:33Z",
-      "last_failure_at": "2026-10-25T10:45:20Z",
-      "flaky_count": 84,
+      "last_failure_at": "2026-10-31T11:42:18Z",
+      "flaky_count": 85,
       "quarantined_at": "2026-04-15T06:41:33Z",
       "quarantined_by": "auto"
     },
@@ -21,8 +21,8 @@
       "name": "AuthService should validate expired token",
       "suite": "",
       "first_flaky_at": "2026-04-15T22:16:24Z",
-      "last_failure_at": "2026-10-30T12:09:31Z",
-      "flaky_count": 85,
+      "last_failure_at": "2026-10-31T11:42:18Z",
+      "flaky_count": 86,
       "quarantined_at": "2026-04-15T22:16:24Z",
       "quarantined_by": "auto"
     },
@@ -69,8 +69,8 @@
       "name": "PaymentService should validate currency",
       "suite": "",
       "first_flaky_at": "2026-04-17T06:42:14Z",
-      "last_failure_at": "2026-10-28T12:08:47Z",
-      "flaky_count": 69,
+      "last_failure_at": "2026-10-31T11:42:18Z",
+      "flaky_count": 70,
       "quarantined_at": "2026-04-17T06:42:14Z",
       "quarantined_by": "auto"
     }
