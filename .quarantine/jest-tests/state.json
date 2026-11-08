@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-07T12:28:31Z",
+  "updated_at": "2026-11-08T12:47:02Z",
   "tests": {
     "PaymentService::AuthService should refresh session::AuthService should refresh session": {
       "test_id": "PaymentService::AuthService should refresh session::AuthService should refresh session",
@@ -45,8 +45,8 @@
       "name": "PaymentService should handle charge timeout",
       "suite": "",
       "first_flaky_at": "2026-04-14T23:16:49Z",
-      "last_failure_at": "2026-11-07T12:28:31Z",
-      "flaky_count": 103,
+      "last_failure_at": "2026-11-08T12:47:02Z",
+      "flaky_count": 104,
       "quarantined_at": "2026-04-14T23:16:49Z",
       "quarantined_by": "auto"
     },
@@ -57,8 +57,8 @@
       "name": "PaymentService should process refund",
       "suite": "",
       "first_flaky_at": "2026-04-15T21:46:52Z",
-      "last_failure_at": "2026-11-03T13:39:20Z",
-      "flaky_count": 87,
+      "last_failure_at": "2026-11-08T12:47:02Z",
+      "flaky_count": 88,
       "quarantined_at": "2026-04-15T21:46:52Z",
       "quarantined_by": "auto"
     },
